@@ -1,0 +1,34 @@
+Aim: To study and test message integrity by using MD5, SHA-1 for varying message sizes.
+
+
+cd /home/apsit/Music
+echo This is the demo of md5 & sha > example.txt
+cat example.txt
+
+--> MD5:
+        md5 example.txt
+
+echo This is the demo of md5 > example.txt
+cat example.txt
+
+--> MD5:
+        md5 example.txt
+
+--> SHA:
+        sha1sum example.txt
+
+echo This is the demo of sha > example.txt
+cat example.txt
+
+--> SHA:
+        sha1sum example.txt
+        sha224sum example.txt
+        sha256sum example.txt
+        sha384sum example.txt
+        sha512sum example.txt
+
+
+Conclusion : 
+We have seen how checksum are generated for MD5 and SHA. 
+You can make use of this Checksum method as a redundancy check to detect errors in data. 
+Hence. ensure the integrity of data portions for data transmission or storage. 

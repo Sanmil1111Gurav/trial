@@ -1,0 +1,26 @@
+Aim: To study password cracking using John the ripper
+
+
+
+sudo apt-get install john 
+
+john -test 
+
+sudo adduser testuser10
+
+sudo cat /etc/shadow 
+----> produces hashes
+
+gedit t10.txt  
+----> Copy the eppropriate hashe to a text file 
+cat t10.txt
+
+john t10.txt
+
+john -show t10.txt
+
+
+
+Conclusion: 
+Even though there are many password-cracking utilities available today, John the Ripper is with no doubt one of the best and most reliable. 
+It has been used with other tools in most Cyber Attack Conferences to exploit the vulnerability of a system of elevated privileges on a compromised system.

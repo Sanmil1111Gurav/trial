@@ -1,0 +1,20 @@
+Aim : To simulate a phishing attack using Zphisher
+
+
+
+cd Downloads 
+git clone https://github.com/htr-tech/zphisher.git
+cd zphisher
+
+bash zphisher.sh
+
+-> Choose the options from the tool for which you have to make the phishing page.
+
+-> To host it on localhost type ‘1’. And custom port as ‘N’ for NO
+
+-> use the browser and open link of localhost 
+
+Conclusion :
+In this experiment we learned that Zphisher can quickly create convincing phishing pages and
+capture credentials, so it must be used only in authorized, ethical tests to improve security and never
+to harm others

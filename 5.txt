@@ -1,0 +1,37 @@
+Aim : To use nmap for network discovery and security auditing
+
+
+sudo apt-get install nmap
+
+nmap -sP 192.168.43.32    ----> It only checks if a computer is ON or OFF, not which ports are open ; -sP : ping scan
+
+nmap -sP 192.168.43.32/24    ----> To scan the entire subnet
+
+nmap -sP 192.168.43.32 192.168.43.169     ----> To scan a multiple targets
+
+nmap -sL 192.168.43.32 192.168.43.169    ----> To see the list of all the hosts that are being scanned ; -sL : List scan
+
+nmap -sL 192.168.43.32 --exclude 192.168.43.169    ----> --exclude : tells Nmap to skip or ignore that IP address if it appears in the target list
+
+nmap -p 80,21,23 192.168.43.32    ----> To scan a specific port on the target machines
+
+nmap -open 192.168.43.32    ----> To know the open ports on target system
+
+nmap --top-ports 5 192.168.43.32    ----> Scans the N commonly used ports found in nmap-services file
+
+nmap -sS 192.168.43.32    ----> TCP SYN Scan (-sS)
+
+nmap -sT 192.168.43.32    ----> TCP connect() scan (-sT)
+
+nmap -sU 192.168.43.32    ----> UDP Scan (-sU)
+
+nmap -sF 192.168.43.32    ----> FIN Scan (-sF)
+
+nmap -O 192.168.43.32    ----> OS Detection (-O)
+
+
+Conclusion: 
+Nmap has ability to cover the very first aspects of penetration testing, which include
+information gathering and enumeration. It is also powerful utility that can be used as a vulnerability
+detector or a security scanner. 
+

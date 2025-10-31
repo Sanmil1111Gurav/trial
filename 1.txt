@@ -1,0 +1,88 @@
+Aim : To study IP spoofing and ARP spoofing over a local area network. 
+
+
+## Part 1: IP Spoofing Demonstration ##
+          
+          
+          Step 1: Create Netkit LAN Network
+          Open three separate terminals and execute:
+                  Terminal 1:
+                  vstart pc1 --eth0=A
+                  
+                  Terminal 2:
+                  vstart pc2 --eth0=A
+                  
+                  Terminal 3:
+                  vstart pc3 --eth0=A
+          
+          
+          Step 2: Configure IP Addresses
+                  PC1 Terminal:
+                  ifconfig eth0 192.168.1.11
+                  
+                  PC2 Terminal:
+                  ifconfig eth0 192.168.1.12
+                  
+                  PC3 Terminal:
+                  ifconfig eth0 192.168.1.13
+          
+          
+          Step 3: Verify Network Connectivity (Normal Ping)
+                  On PC1:
+                  ping 192.168.1.13
+                  **Expected Result:** Normal ping responses from PC3 showing source as 192.168.1.11
+          
+          
+          Step 4: Configure IP Spoofing on Attacker (PC1)
+                  sudo iptables -t nat -A POSTROUTING -p icmp -j SNAT --to-source 192.168.1.12
+                  
+                  **Purpose:** This makes PC1's packets appear to come from PC2 (192.168.1.12).
+          
+          
+          Step 5: Start Packet Monitoring on Victim (PC2)
+                  tcpdump -i any
+                  
+                  **Purpose:** Capture all network traffic to see spoofed packets.
+          
+          
+          Step 6: Execute Spoofed Ping Attack
+                  On PC1:
+                  ping 192.168.1.13
+          
+          
+          Step 7: Analyze Results
+          **Expected Outcome:** PC2's tcpdump will show ICMP responses coming to PC2 (192.168.1.12) even though PC1 initiated the ping.
+
+
+
+## Part 2: ARP Spoofing Demonstration ##
+
+
+        sudo apt install arpwatch
+        
+        sudo systemctl status arpwatch
+        
+        tail -f /var/log/syslog
+        
+        arp -e   ----> / optional /
+        
+        ping 192.168.36.101
+        
+        sudo ifconfig enp4s0 hw ether 18:60:24:af:0e:5d
+        
+        ping 192.168.104.2
+        
+        arp -e  ///ORRR/// ifconfig
+
+        tail -f /var/log/syslog
+
+
+
+CONCLUSION:
+In this experiment, we learned how IP and ARP spoofing can manipulate network traffic and
+compromise the integrity of a Local Area Network. These attacks can lead to unauthorized data
+access and disruption of communication, emphasizing the need for robust security measures like
+encryption and network monitoring.
+
+
+

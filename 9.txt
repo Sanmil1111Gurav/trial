@@ -1,0 +1,97 @@
+Aim : To study and implement IPSEC in Linux
+
+// You need TWO machines : red , blue machine
+
+1)
+----> on both machine :
+sudo apt-get update
+sudo apt-get install ipsec-tools strongswan-starter
+
+
+2)
+----> on red :
+sudo gedit /etc/ipsec.conf 
+
+          {
+            conn red-to-blue
+                authby=secret
+                auto=route
+                keyexchange=ikev2
+                ike=aes128-md5-modp1024
+                left=192.168.104.13
+                right=192.168.104.14
+                type=transport
+                esp=aes128-sha1-modp1024!
+          }
+          change left= red(your) & right=blue(friends) ip address 
+
+-----> on blue:
+same as red only chnage : conn blue-to-red , left=blue & rifht=red
+
+
+3)
+---->on red:
+sudo gedit /etc/ipsec.secret
+
+    {
+    // Add this at line end of file
+    red-ipaddress blue-ip address : PSK "mysecretkey123"
+    }
+
+---->on red:
+sudo gedit /etc/ipsec.secret
+
+    {
+    // Add this line at end of file
+    blue-ipaddress red-ip address : PSK "mysecretkey123"
+    }
+
+
+4)
+-----> on both:
+
+sudo ipsec start
+sudo ipsec reload
+
+
+5)
+----->on red:
+sudo ipsec up red-to-blue
+
+----->on blue:
+sudo ipsec up blue-to-red
+
+
+6)
+----->on both:
+sudo ipsec status
+
+
+7)
+----->on blue:
+sudo tcpdump -i any -w ipsec_capture.pcap host 192.168.104.13
+/// 🔵 BLUE machine captures traffic from 🔴 RED machine IP
+
+
+8)
+----->on red:
+ping blue-ipaddress
+
+
+9)
+----->on blue:
+wireshark ipsec_capture.pcap
+
+
+{{
+    **If connection fails :**
+          
+          # Check firewall rules #
+          sudo iptables -L
+          
+          # Check if both machines have matching algorithms #
+          sudo ipsec listciphers
+          
+          # Verify pre-shared key is identical on both machines #
+          sudo cat /etc/ipsec.secrets
+}}

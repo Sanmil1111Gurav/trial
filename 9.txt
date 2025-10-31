@@ -39,7 +39,7 @@ sudo gedit /etc/ipsec.secret
     }
 
 ---->on red:
-sudo gedit /etc/ipsec.secret
+sudo gedit /etc/ipsec.secret 
 
     {
     // Add this line at end of file

@@ -69,7 +69,7 @@ sudo ipsec status
 
 7)
 ----->on blue:
-sudo tcpdump -i any -w ipsec_capture.pcap host 192.168.104.13
+sudo tcpdump -i any -w ipsec_capture.pcap host red-ipaddress
 /// 🔵 BLUE machine captures traffic from 🔴 RED machine IP
 
 

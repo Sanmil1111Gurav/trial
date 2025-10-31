@@ -58,7 +58,7 @@ Aim : To study IP spoofing and ARP spoofing over a local area network.
 ## Part 2: ARP Spoofing Demonstration ##
 
 
-        sudo apt install arpwatch
+        sudo apt-install arpwatch
         
         sudo systemctl status arpwatch
         
